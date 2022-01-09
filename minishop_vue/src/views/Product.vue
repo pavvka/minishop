@@ -46,7 +46,7 @@ export default {
     },
     methods: {
         async getProduct() {
-            this.$store.commit('setIsLoading', true)
+            this.$store.commit('setIsLoading', true) // change loading status
             const category_slug = this.$route.params.category_slug
             const product_slug = this.$route.params.product_slug
             await axios
@@ -59,7 +59,7 @@ export default {
                     console.log(error)
                 })
             
-            this.$store.commit('setIsLoading', false)
+            this.$store.commit('setIsLoading', false) // change loading status
         },
         addToCart() {
             if (isNaN(this.quantity) || this.quantity < 1) {
