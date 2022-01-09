@@ -2239,6 +2239,11 @@
   "resolved" "https://registry.npmjs.org/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz"
   "version" "3.0.0"
 
+"bulma-toast@^2.4.1":
+  "integrity" "sha512-Gwa40dH0gyO3/azJxzFSZD2PKcFlp55HWyPE3gV8gm1WGXyyKrNDCzFlsY8XqxstNRp+xtcdo2L0Y4df+iWNWg=="
+  "resolved" "https://registry.npmjs.org/bulma-toast/-/bulma-toast-2.4.1.tgz"
+  "version" "2.4.1"
+
 "bulma@^0.9.3":
   "integrity" "sha512-0d7GNW1PY4ud8TWxdNcP6Cc8Bu7MxcntD/RRLGWuiw/s0a9P+XlH/6QoOIrmbj6o8WWJzJYhytiu9nFjTszk1g=="
   "resolved" "https://registry.npmjs.org/bulma/-/bulma-0.9.3.tgz"
