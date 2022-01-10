@@ -40,6 +40,16 @@ export default createStore({
     setIsLoading(state, status) {
       state.isLoading = status
     },
+    // Auntification tocken
+    setToken(state, token) {
+      state.token = token
+      state.isAuthenticated = true
+    },
+    removeToken(state) {
+      state.token = ''
+      state.isAuthenticated = false
+    }, 
+
   },
   actions: {
   },
