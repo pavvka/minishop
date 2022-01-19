@@ -6,6 +6,11 @@
             </div>
 
             <div class="column is-12">
+                <h2 class="subtitle">My data</h2>
+                <p>Name: </p>
+            </div>
+
+            <div class="column is-12">
                 <button @click="logout()" class="button is-danger">Log out</button>
             </div>
 
@@ -33,7 +38,8 @@ export default {
     },
     data() {
         return {
-            orders: []
+            orders: [],
+            user_data: []
         }
     },
     mounted() {
@@ -55,6 +61,19 @@ export default {
                 .get('/api/v1/orders/')
                 .then(response => {
                     this.orders = response.data
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+            this.$store.commit('setIsLoading', false)
+        },
+        async getUserData() {
+            this.$store.commit('setIsLoading', true)
+            await axios
+                .get('/api/v1/users/')
+                .then(response => {
+                    this.user_data = response.data
+                    console.log("User data: ", this.user_data)
                 })
                 .catch(error => {
                     console.log(error)

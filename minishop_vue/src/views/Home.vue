@@ -3,10 +3,10 @@
     <section class="hero is-medium is-dark mb-6">
         <div class="hero-body has-text-centered">
             <p class="title mb-6">
-                Welcome to Djacket
+                Welcome to minishop
             </p>
             <p class="subtitle">
-                The best jacket store online
+                The test clothing store
             </p>
         </div>
     </section>
@@ -58,3 +58,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.hero-body{
+  background-image: '../assets/background.jpg';
+  color: brown;
+}
+</style>
