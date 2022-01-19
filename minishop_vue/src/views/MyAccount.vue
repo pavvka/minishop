@@ -44,8 +44,7 @@ export default {
     },
     mounted() {
         document.title = 'My account | Djackets'
-        this.getMyOrders(),
-        //this.getUserData()
+        this.getMyOrders()
     },
     methods: {
         logout() {
