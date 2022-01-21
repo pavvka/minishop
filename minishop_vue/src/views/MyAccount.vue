@@ -44,7 +44,8 @@ export default {
     },
     mounted() {
         document.title = 'My account | Djackets'
-        this.getMyOrders()
+        this.getMyOrders(),
+        this.getUserData()
     },
     methods: {
         logout() {
@@ -56,6 +57,7 @@ export default {
             this.$router.push('/')
         },
         async getMyOrders() {
+            console.log(localStorage.token)
             this.$store.commit('setIsLoading', true)
             await axios
                 .get('/api/v1/orders/')

@@ -13,6 +13,13 @@
                     </div>
 
                     <div class="field">
+                        <label>Email</label>
+                        <div class="control">
+                            <input type="text" class="input" v-model="email">
+                        </div>
+                    </div>
+
+                    <div class="field">
                         <label>Password</label>
                         <div class="control">
                             <input type="password" class="input" v-model="password">
@@ -53,6 +60,7 @@ export default {
     data() {
         return {
             username: '',
+            email: '',
             password: '',
             password2: '',
             errors: []
@@ -64,6 +72,9 @@ export default {
             if (this.username === '') {
                 this.errors.push('The username is missing')
             }
+            if (this.email === '') {
+                this.errors.push('The email is missing')
+            }
             if (this.password === '') {
                 this.errors.push('The password is too short')
             }
@@ -73,6 +84,7 @@ export default {
             if (!this.errors.length) {
                 const formData = {
                     username: this.username,
+                    email: this.email,
                     password: this.password
                 }
                 axios
