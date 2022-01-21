@@ -7,7 +7,7 @@
 
             <div class="column is-12">
                 <h2 class="subtitle">My data</h2>
-                <p>Name: {{this.user_data[0].id}}</p>
+                <p>{{ this.user_data[0].id }}</p>
             </div>
 
             <div class="column is-12">
@@ -42,10 +42,11 @@ export default {
             user_data: []
         }
     },
-    mounted() {
+    async mounted() {
         document.title = 'My account | Djackets'
         this.getMyOrders(),
-        this.getUserData()
+        await this.getUserData(),
+        console.log("TEST USER DATA: ", this.user_data)
     },
     methods: {
         logout() {
@@ -75,7 +76,7 @@ export default {
                 .get('/api/v1/users/')
                 .then(response => {
                     this.user_data = response.data
-                    console.log("User data: ", this.user_data)
+                    console.log("User data: ", this.user_data[0].id)
                 })
                 .catch(error => {
                     console.log(error)
