@@ -7,7 +7,7 @@
 
             <div class="column is-12">
                 <h2 class="subtitle">My data</h2>
-                <p>Name: </p>
+                <p>Name: {{this.user_data[0].id}}</p>
             </div>
 
             <div class="column is-12">
