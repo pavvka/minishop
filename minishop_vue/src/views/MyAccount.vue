@@ -7,7 +7,7 @@
 
             <div class="column is-12">
                 <h2 class="subtitle">My data</h2>
-                <p>{{ this.user_data[0].id }}</p>
+                <p v-if="this.user_data[0]">{{ this.user_data[0].id }}</p>
             </div>
 
             <div class="column is-12">
