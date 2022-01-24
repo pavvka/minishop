@@ -15,6 +15,7 @@ class CustomUser(AbstractUser):
 
     objects = CustomUserManager()
 
+    city = models.CharField(max_length=50, blank=True, default='')
     spouse_name = models.CharField(blank=True, max_length=100)
     date_of_birth = models.DateField(blank=True, null=True)
     

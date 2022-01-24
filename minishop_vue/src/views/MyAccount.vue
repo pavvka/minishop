@@ -7,7 +7,7 @@
 
             <div class="column is-12">
                 <h2 class="subtitle">My data</h2>
-                <p v-if="this.user_data[0]">{{ this.user_data[0].id }}</p>
+                <p v-if="this.user_data[0]">{{ this.user_data[0].email }}</p>
             </div>
 
             <div class="column is-12">
@@ -58,7 +58,6 @@ export default {
             this.$router.push('/')
         },
         async getMyOrders() {
-            console.log(localStorage.token)
             this.$store.commit('setIsLoading', true)
             await axios
                 .get('/api/v1/orders/')
@@ -76,7 +75,7 @@ export default {
                 .get('/api/v1/users/')
                 .then(response => {
                     this.user_data = response.data
-                    console.log("User data: ", this.user_data[0].id)
+                    console.log("User data: ", this.user_data)
                 })
                 .catch(error => {
                     console.log(error)
