@@ -1,7 +1,6 @@
 <template>
     <div class="column is-5">
         <p>Feel free to edit any of your details below so your account is totally up to date.</p>
-        {{ this.userdata.username}}
             <div class="field">
             <label class="label">Username</label>
             <div class="control has-icons-left has-icons-right">
@@ -31,22 +30,17 @@
             </div>
 
             <div class="field">
-            <label class="label">Subject</label>
-            <div class="control">
-                <div class="select">
-                <select>
-                    <option>Select dropdown</option>
-                    <option>With options</option>
-                </select>
+                <label class="label">City</label>
+                <div class="control">
+                    <input class="input is-success" type="text" placeholder="Your city" :value="this.userdata.city">
                 </div>
-            </div>
             </div>
 
             <div class="field">
-            <label class="label">Message</label>
-            <div class="control">
-                <textarea class="textarea" placeholder="Textarea"></textarea>
-            </div>
+                <label class="label">Date of birth</label>
+                <div class="control">
+                    <input class="input is-success" type="date" placeholder="Date of birth" :value="this.userdata.date_of_birth">
+                </div>
             </div>
 
             <div class="field">
@@ -58,25 +52,12 @@
             </div>
             </div>
 
-            <div class="field">
-            <div class="control">
-                <label class="radio">
-                <input type="radio" name="question">
-                Yes
-                </label>
-                <label class="radio">
-                <input type="radio" name="question">
-                No
-                </label>
-            </div>
-            </div>
-
             <div class="field is-grouped">
             <div class="control">
-                <button class="button is-link">Submit</button>
+                <button class="button is-success">Save changes</button>
             </div>
             <div class="control">
-                <button class="button is-link is-light">Cancel</button>
+                <button class="button is-success is-light">Cancel</button>
             </div>
             </div>
     </div>
