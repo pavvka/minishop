@@ -13,7 +13,7 @@
                         <li><a @click="togglemyDetailsComponent">My details</a></li>
                         <li><a @click="toggleadderssBookComponent">Address book</a></li>
                         <li><a @click="togglegiftCardsComponent">Gift cards</a></li>
-                        <li><a @click="logout()" class="is-danger">Log out</a></li>
+                        <li><a @click="logout()" class="is-dark">Log out</a></li>
                     </ul>
                 </aside>
             </div>
@@ -31,6 +31,10 @@
             </div>
             <div class="column is-10" v-if="myDetailsComponent">
                 <h2 class="subtitle">My details</h2>
+
+                <UserDetails
+                    :userdata="this.user_data[0]" />
+
             </div>
             <div class="column is-10" v-if="adderssBookComponent">
                 <h2 class="subtitle">Address book</h2>
@@ -48,10 +52,12 @@
 <script>
 import axios from 'axios'
 import OrderSummary from '@/components/OrderSummary.vue'
+import UserDetails from '@/components/UserDetails.vue'
 export default {
     name: 'MyAccount',
     components: {
-        OrderSummary
+        OrderSummary,
+        UserDetails
     },
     data() {
         return {
