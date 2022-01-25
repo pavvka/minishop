@@ -10,6 +10,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "email",
+            'username',
             "city",
             "date_of_birth"
         )

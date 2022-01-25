@@ -2,21 +2,23 @@
     <div class="page-my-account">
         <div class="columns is-multiline">
             <div class="column is-12">
-                <h1 class="title">My account</h1>
+                <h2 class="subtitle" v-if="this.user_data[0]">Wellcome, {{ this.user_data[0].username }}</h2>
             </div>
 
-            <div class="column is-12">
-                <h2 class="subtitle">My data</h2>
-                <p v-if="this.user_data[0]">{{ this.user_data[0].email }}</p>
+            <div class="column is-2">
+                <aside class="menu">
+                    <ul class="menu-list">
+                        <li><a @click="togglemyOrdersComponent">My orders</a></li>
+                        <li><a @click="togglemyReturnsComponent">My returns</a></li>
+                        <li><a @click="togglemyDetailsComponent">My details</a></li>
+                        <li><a @click="toggleadderssBookComponent">Address book</a></li>
+                        <li><a @click="togglegiftCardsComponent">Gift cards</a></li>
+                        <li><a @click="logout()" class="is-danger">Log out</a></li>
+                    </ul>
+                </aside>
             </div>
 
-            <div class="column is-12">
-                <button @click="logout()" class="button is-danger">Log out</button>
-            </div>
-
-            <hr>
-
-            <div class="column is-12">
+            <div class="column is-10" v-if="myOrdersComponent">
                 <h2 class="subtitle">My orders</h2>
 
                 <OrderSummary
@@ -24,6 +26,21 @@
                     v-bind:key="order.id"
                     v-bind:order="order" />
             </div>
+            <div class="column is-10" v-if="myReturnsComponent">
+                <h2 class="subtitle">My returns</h2>
+            </div>
+            <div class="column is-10" v-if="myDetailsComponent">
+                <h2 class="subtitle">My details</h2>
+            </div>
+            <div class="column is-10" v-if="adderssBookComponent">
+                <h2 class="subtitle">Address book</h2>
+            </div>
+            <div class="column is-10" v-if="giftCardsComponent">
+                <h2 class="subtitle">Gift cards</h2>
+            </div>
+
+
+            <hr>
         </div>
     </div>
 </template>
@@ -39,7 +56,12 @@ export default {
     data() {
         return {
             orders: [],
-            user_data: []
+            user_data: [],
+            myOrdersComponent: false,
+            myReturnsComponent: false,
+            myDetailsComponent: false,
+            adderssBookComponent: false,
+            giftCardsComponent: false,
         }
     },
     async mounted() {
@@ -81,7 +103,37 @@ export default {
                     console.log(error)
                 })
             this.$store.commit('setIsLoading', false)
-        }
+        },
+        // Components conditional rendering
+
+        // close all windows before show a new one
+        closeAllComponents(){
+            this.myOrdersComponent = false
+            this.myReturnsComponent = false
+            this.myDetailsComponent = false
+            this.adderssBookComponent = false
+            this.giftCardsComponent = false
+        },
+        togglemyOrdersComponent () {
+            this.closeAllComponents()
+            this.myOrdersComponent = !this.myOrdersComponent;
+        },
+        togglemyReturnsComponent () {
+            this.closeAllComponents()
+            this.myReturnsComponent = !this.myReturnsComponent;
+        },
+        togglemyDetailsComponent () {
+            this.closeAllComponents()
+            this.myDetailsComponent = !this.myDetailsComponent;
+        },
+        toggleadderssBookComponent () {
+            this.closeAllComponents()
+            this.adderssBookComponent = !this.adderssBookComponent;
+        },
+        togglegiftCardsComponent () {
+            this.closeAllComponents()
+            this.giftCardsComponent = !this.giftCardsComponent;
+        },
     }
 }
 </script>
