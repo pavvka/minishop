@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: 'UserDetails',
     props: {
@@ -101,7 +102,7 @@ export default {
             }
             if (!this.errors.length) {
                 await axios
-                    .post('/api/v1/users/' + this.userdata.id, data)
+                    .put('/api/v1/update_profile/' + this.userdata.id + '/', data)
                     .then(response => {
                         console.log(response);
                     })
