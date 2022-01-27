@@ -48,7 +48,8 @@ INSTALLED_APPS = [
 
     'product',
     'order',
-    'user'
+    'user',
+    'comments'
 ]
 
 CORS_ALLOWED_ORIGINS = [
