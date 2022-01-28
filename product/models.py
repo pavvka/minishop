@@ -1,8 +1,12 @@
 from io import BytesIO
 from PIL import Image
+from datetime import timezone
 
 from django.core.files import File
+from django.conf import settings
 from django.db import models
+from django.utils import timezone
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -17,6 +21,17 @@ class Category(models.Model):
     def get_absolute_url(self):
         return f'/{self.slug}/'
 
+
+class Comment(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    text = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return str(self.user.email)
+
+    def get_absolute_url(self):
+        return f'/{self.product.slug}/'
+
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
@@ -26,6 +41,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
+    comments = models.ManyToManyField(Comment, blank=True, null=True)
 
     class Meta:
         ordering = ('-date_added',)
@@ -64,3 +80,12 @@ class Product(models.Model):
         thumbnail = File(thumb_io, name=image.name)
 
         return thumbnail
+
+class ProductComment(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_date = models.DateTimeField(default=timezone.now())
+
+    def __str__(self):
+        return self.text
