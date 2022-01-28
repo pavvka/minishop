@@ -9,3 +9,5 @@ class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     text = models.TextField(blank=True, null=True)
 
+    def get_absolute_url(self):
+        return f'/{self.product.slug}/'
