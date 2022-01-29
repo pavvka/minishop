@@ -26,7 +26,6 @@ class ProductSerializer(serializers.ModelSerializer):
             "get_thumbnail"
         )
     def get_pagecomment_set(self, instance):
-
         page_comment = instance.comments.all()
         return ProductCommentSerializer(page_comment, many=True).data
 

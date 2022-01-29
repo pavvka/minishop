@@ -13,6 +13,7 @@ from .serializers import ProductSerializer, CategorySerializer
 class LatestProductsList(APIView):
     def get(self, request, format=None):
         products = Product.objects.all()[0:4]
+        ProductSerializer.get_pagecomment_set()
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
 
@@ -27,6 +28,9 @@ class ProductDetail(APIView):
         product = self.get_object(category_slug, product_slug)
         serializer = ProductSerializer(product)
         return Response(serializer.data)
+
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
 class CategoryDetail(APIView):
     def get_object(self, category_slug):
