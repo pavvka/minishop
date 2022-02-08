@@ -6,14 +6,13 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from .models import Product, Category
+from .models import Product, Category, Comment
 from .serializers import ProductSerializer, CategorySerializer
 
 # Create API view with django rest framework
 class LatestProductsList(APIView):
     def get(self, request, format=None):
         products = Product.objects.all()[0:4]
-        ProductSerializer.get_pagecomment_set()
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
 

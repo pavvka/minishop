@@ -13,6 +13,7 @@ class ProductCommentSerializer(serializers.ModelSerializer):
         ]
 
 class ProductSerializer(serializers.ModelSerializer):
+    pagecomment_set = serializers.SerializerMethodField()
     class Meta:
         model = Product
         fields = (
@@ -21,7 +22,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "get_absolute_url",
             "description",
             "price",
-            "comments",
+            "pagecomment_set",
             "get_image",
             "get_thumbnail"
         )
