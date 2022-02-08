@@ -1,8 +1,19 @@
 from rest_framework import serializers
 
-from .models import Category, Product
+from .models import Category, Product, ProductComment
+
+class ProductCommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductComment
+        fields = [
+            'id',
+            'author',
+            'text',
+            'created_date',
+        ]
 
 class ProductSerializer(serializers.ModelSerializer):
+    pagecomment_set = serializers.SerializerMethodField()
     class Meta:
         model = Product
         fields = (
@@ -11,9 +22,14 @@ class ProductSerializer(serializers.ModelSerializer):
             "get_absolute_url",
             "description",
             "price",
+            "pagecomment_set",
             "get_image",
             "get_thumbnail"
         )
+    def get_pagecomment_set(self, instance):
+        page_comment = instance.comments.all()
+        return ProductCommentSerializer(page_comment, many=True).data
+
 class CategorySerializer(serializers.ModelSerializer):
     products = ProductSerializer(many=True)
 

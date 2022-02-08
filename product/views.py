@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from .models import Product, Category
+from .models import Product, Category, Comment
 from .serializers import ProductSerializer, CategorySerializer
 
 # Create API view with django rest framework
@@ -27,6 +27,9 @@ class ProductDetail(APIView):
         product = self.get_object(category_slug, product_slug)
         serializer = ProductSerializer(product)
         return Response(serializer.data)
+
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
 class CategoryDetail(APIView):
     def get_object(self, category_slug):
