@@ -7,28 +7,25 @@ class ProductCommentSerializer(serializers.ModelSerializer):
         model = ProductComment
         fields = [
             'id',
-            'author',
+            'user',
             'text',
             'created_date',
         ]
 
 class ProductSerializer(serializers.ModelSerializer):
-    pagecomment_set = serializers.SerializerMethodField()
+    comments = ProductCommentSerializer(many=True, read_only=True)
     class Meta:
         model = Product
-        fields = (
+        fields = [
             "id",
             "name",
             "get_absolute_url",
             "description",
             "price",
-            "pagecomment_set",
             "get_image",
-            "get_thumbnail"
-        )
-    def get_pagecomment_set(self, instance):
-        page_comment = instance.comments.all()
-        return ProductCommentSerializer(page_comment, many=True).data
+            "get_thumbnail",
+            'comments'
+        ]
 
 class CategorySerializer(serializers.ModelSerializer):
     products = ProductSerializer(many=True)
