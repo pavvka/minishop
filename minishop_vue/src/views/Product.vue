@@ -26,6 +26,14 @@
                     </div>
                 </div>
             </div>
+            <div class="column is-8">
+                <h2 class="subtitle">Comments</h2>
+
+                <Comments
+                    v-for="comment in product.comments"
+                    v-bind:key="comment.id"
+                    v-bind:comment="comment" />
+            </div>
         </div>
     </div>
 </template>
@@ -33,8 +41,12 @@
 <script>
 import axios from 'axios'
 import { toast } from 'bulma-toast'
+import Comments from '@/components/Comments.vue'
 export default {
     name: 'Product',
+    components: {
+        Comments
+    },
     data() {
         return {
             product: {},
@@ -54,6 +66,7 @@ export default {
                 .then(response => {
                     this.product = response.data
                     document.title = this.product.name + ' | Djackets'
+                    console.log(this.product.comments)
                 })
                 .catch(error => {
                     console.log(error)
