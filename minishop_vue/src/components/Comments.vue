@@ -1,6 +1,8 @@
 <template>
-    <div class="column is-9">
-        <h3 class="is-size-6 mb-6">KEK: {{ comment.user }}</h3>
+    <div class="box mb-4">
+        <h3 class="is-size-6">{{ comment.user }}: </h3>
+        <span class="is-size-7 grey">{{ comment.created_date }}</span>
+        <p class="">{{ comment.text }}</p>
 
     </div>
 </template>
